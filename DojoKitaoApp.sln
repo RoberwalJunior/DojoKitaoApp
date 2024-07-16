@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AF08A6B2-5161-4322-BF81-B8C4C424B126}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{363FA4A0-A4D8-47B1-836F-8A95C23D3123}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Libraries.Domain", "src\Libraries\DojoKitaoApp.Libraries.Domain\DojoKitaoApp.Libraries.Domain.csproj", "{80196823-212C-4983-AB78-0C24481D8473}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Libraries.Infrastructure", "src\Libraries\DojoKitaoApp.Libraries.Infrastructure\DojoKitaoApp.Libraries.Infrastructure.csproj", "{D96A89C8-7F59-40AF-9EB3-EDEBE1A6B633}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Libraries.Application", "src\Libraries\DojoKitaoApp.Libraries.Application\DojoKitaoApp.Libraries.Application.csproj", "{70E64BE5-773A-4EEB-812E-AECFDC1BD524}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Api", "src\DojoKitaoApp.Api\DojoKitaoApp.Api.csproj", "{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80196823-212C-4983-AB78-0C24481D8473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80196823-212C-4983-AB78-0C24481D8473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80196823-212C-4983-AB78-0C24481D8473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80196823-212C-4983-AB78-0C24481D8473}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D96A89C8-7F59-40AF-9EB3-EDEBE1A6B633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96A89C8-7F59-40AF-9EB3-EDEBE1A6B633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96A89C8-7F59-40AF-9EB3-EDEBE1A6B633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96A89C8-7F59-40AF-9EB3-EDEBE1A6B633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70E64BE5-773A-4EEB-812E-AECFDC1BD524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70E64BE5-773A-4EEB-812E-AECFDC1BD524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70E64BE5-773A-4EEB-812E-AECFDC1BD524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70E64BE5-773A-4EEB-812E-AECFDC1BD524}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{363FA4A0-A4D8-47B1-836F-8A95C23D3123} = {AF08A6B2-5161-4322-BF81-B8C4C424B126}
+		{80196823-212C-4983-AB78-0C24481D8473} = {363FA4A0-A4D8-47B1-836F-8A95C23D3123}
+		{D96A89C8-7F59-40AF-9EB3-EDEBE1A6B633} = {363FA4A0-A4D8-47B1-836F-8A95C23D3123}
+		{70E64BE5-773A-4EEB-812E-AECFDC1BD524} = {363FA4A0-A4D8-47B1-836F-8A95C23D3123}
+		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8} = {AF08A6B2-5161-4322-BF81-B8C4C424B126}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDE7CD8A-80A9-42D6-8409-6A3898C5585B}
+	EndGlobalSection
+EndGlobal
