@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Libraries.Appl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Api", "src\DojoKitaoApp.Api\DojoKitaoApp.Api.csproj", "{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C93E19C2-AB7A-481B-9991-89283B238A54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Integration.Test.Api", "tests\DojoKitaoApp.Integration.Test.Api\DojoKitaoApp.Integration.Test.Api.csproj", "{AA980823-88CD-44C0-8053-20B990446805}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,10 @@ Global
 		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA980823-88CD-44C0-8053-20B990446805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA980823-88CD-44C0-8053-20B990446805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA980823-88CD-44C0-8053-20B990446805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA980823-88CD-44C0-8053-20B990446805}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,7 @@ Global
 		{D96A89C8-7F59-40AF-9EB3-EDEBE1A6B633} = {363FA4A0-A4D8-47B1-836F-8A95C23D3123}
 		{70E64BE5-773A-4EEB-812E-AECFDC1BD524} = {363FA4A0-A4D8-47B1-836F-8A95C23D3123}
 		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8} = {AF08A6B2-5161-4322-BF81-B8C4C424B126}
+		{AA980823-88CD-44C0-8053-20B990446805} = {C93E19C2-AB7A-481B-9991-89283B238A54}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDE7CD8A-80A9-42D6-8409-6A3898C5585B}
