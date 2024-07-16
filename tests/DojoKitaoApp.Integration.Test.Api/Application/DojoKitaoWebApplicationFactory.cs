@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Testing;
 using DojoKitaoApp.Libraries.Domain.Entities;
-using DojoKitaoApp.Libraries.Infrastructure.Data.Context;
 using Microsoft.Extensions.DependencyInjection;
+using DojoKitaoApp.Libraries.Infrastructure.Data.Context;
 
-namespace DojoKitaoApp.Integration.Test.Api.Factory;
+namespace DojoKitaoApp.Integration.Test.Api.Application;
 
 public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
 {
@@ -30,5 +30,23 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
             context.SaveChanges();
         }
         return matriculaExistente.Id;
+    }
+
+    public Aluno RecuperarAlunoExistente()
+    {
+        var alunoExistente = context.Alunos.FirstOrDefault();
+        if (alunoExistente == null)
+        {
+            var idMatriculaExistente = RecuperarIdMatriculaExistente();
+            alunoExistente = new Aluno()
+            {
+                Nome = "Aluno Teste",
+                MatriculaId = idMatriculaExistente
+            };
+
+            context.Add(alunoExistente);
+            context.SaveChanges();
+        }
+        return alunoExistente;
     }
 }

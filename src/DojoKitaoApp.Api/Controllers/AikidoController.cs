@@ -1,6 +1,7 @@
-﻿using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Aluno;
+﻿using Microsoft.AspNetCore.Mvc;
 using DojoKitaoApp.Libraries.Application.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Aluno;
+using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Matricula;
 
 namespace DojoKitaoApp.Api.Controllers;
 
@@ -16,5 +17,11 @@ public class AikidoController(IAlunoServiceApi alunoService, IMatriculaServiceAp
     public IEnumerable<ReadAlunoDto> ListarTodosOsAlunos()
     {
         return alunoService.ListarTodosOsAlunosDaArteMarcial(0);
+    }
+
+    [HttpGet("Matriculas")]
+    public IEnumerable<ReadMatriculaDto> ListarMatriculasDosAlunos()
+    {
+        return matriculaService.ListarAsMatriculasDosAlunos(0);
     }
 }

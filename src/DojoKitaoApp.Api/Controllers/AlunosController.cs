@@ -23,13 +23,6 @@ public class AlunosController(IAlunoServiceApi service) : ControllerBase
         return alunoDto != null ? Ok(alunoDto) : NotFound();
     }
 
-    [HttpGet("nome/{nomeAluno}")]
-    public IActionResult RecuperarAluno(string nomeAluno)
-    {
-        var alunoDto = service.RecuperarAlunoPeloNome(nomeAluno);
-        return alunoDto != null ? Ok(alunoDto) : NotFound();
-    }
-
     [HttpGet("{id}/Matricula")]
     public IActionResult RecuperarMatriculaDoAluno(int id)
     {

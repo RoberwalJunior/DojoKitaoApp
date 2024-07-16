@@ -1,6 +1,6 @@
 using System.Net;
 using System.Net.Http.Json;
-using DojoKitaoApp.Integration.Test.Api.Factory;
+using DojoKitaoApp.Integration.Test.Api.Application;
 using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Matricula;
 
 namespace DojoKitaoApp.Integration.Test.Api;

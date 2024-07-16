@@ -28,6 +28,13 @@ public class MatriculaServiceApi : IMatriculaServiceApi
         return mapper.Map<List<ReadMatriculaDto>>(matriculas);
     }
 
+    public IEnumerable<ReadMatriculaDto> ListarAsMatriculasDosAlunos(int idArteMarcial)
+    {
+        var matriculas = repository.ListarTodos();
+        var matriculasSelecionadas = matriculas.Where(matricula => (int)matricula.ArteMarcial == idArteMarcial);
+        return mapper.Map<List<ReadMatriculaDto>>(matriculasSelecionadas);
+    }
+
     public void CriarNovaMatricula(CreateMatriculaDto matriculaDto)
     {
         var matricula = mapper.Map<Matricula>(matriculaDto);
