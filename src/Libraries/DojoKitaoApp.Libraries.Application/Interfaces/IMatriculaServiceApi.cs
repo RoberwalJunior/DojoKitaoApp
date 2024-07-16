@@ -4,8 +4,8 @@ namespace DojoKitaoApp.Libraries.Application.Interfaces;
 
 public interface IMatriculaServiceApi
 {
-    public IEnumerable<ReadMatriculaDto> ListarAsMatriculasDosAlunos();
-    public IEnumerable<ReadMatriculaDto> ListarAsMatriculasDosAlunos(int idArteMarcial);
-    public void CriarNovaMatricula(CreateMatriculaDto matriculaDto);
-    public bool AtualizarMatricula(int id, UpdateMatriculaDto matriculaDto);
+    public Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos();
+    public Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos(int idArteMarcial);
+    public Task CriarNovaMatricula(CreateMatriculaDto matriculaDto);
+    public Task<bool> AtualizarMatricula(int id, UpdateMatriculaDto matriculaDto);
 }

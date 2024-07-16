@@ -24,15 +24,15 @@ public class AlunoServiceApi : IAlunoServiceApi
         mapper = configuration.CreateMapper();
     }
 
-    public IEnumerable<ReadAlunoDto> ListarTodosOsAlunos()
+    public async Task<IEnumerable<ReadAlunoDto>> ListarTodosOsAlunos()
     {
-        var alunos = repository.ListarTodos();
+        var alunos = await repository.ListarTodosAsync();
         return mapper.Map<List<ReadAlunoDto>>(alunos);
     }
 
-    public IEnumerable<ReadAlunoDto> ListarTodosOsAlunosDaArteMarcial(int idArteMarcial)
+    public async Task<IEnumerable<ReadAlunoDto>> ListarTodosOsAlunosDaArteMarcial(int idArteMarcial)
     {
-        var alunos = repository.ListarTodos();
+        var alunos = await repository.ListarTodosAsync();
         var alunosSelecionados = alunos.Where(aluno => (int)aluno.Matricula!.ArteMarcial == idArteMarcial);
         return mapper.Map<List<ReadAlunoDto>>(alunosSelecionados);
     }
@@ -52,30 +52,30 @@ public class AlunoServiceApi : IAlunoServiceApi
     public ReadMatriculaDto? RecuperarMatriculaDoAluno(int id)
     {
         var aluno = repository.RecuperarPor(aluno => aluno.Id == id);
-        return (aluno != null && aluno.Matricula != null) 
+        return (aluno != null && aluno.Matricula != null)
             ? mapper.Map<ReadMatriculaDto>(aluno.Matricula) : null;
     }
 
-    public void CriarNovoAluno(CreateAlunoDto alunoDto)
+    public async Task CriarNovoAluno(CreateAlunoDto alunoDto)
     {
         var aluno = mapper.Map<Aluno>(alunoDto);
-        repository.Adicionar(aluno);
+        await repository.AdicionarAsync(aluno);
     }
 
-    public bool AtualizarAluno(int id, UpdateAlunoDto alunoDto)
+    public async Task<bool> AtualizarAluno(int id, UpdateAlunoDto alunoDto)
     {
         var aluno = repository.RecuperarPor(x => x.Id == id);
         if (aluno == null) return false;
         mapper.Map(alunoDto, aluno);
-        repository.Atualizar(aluno);
+        await repository.AtualizarAsync(aluno);
         return true;
     }
 
-    public bool RemoverAluno(int id)
+    public async Task<bool> RemoverAluno(int id)
     {
         var aluno = repository.RecuperarPor(x => x.Id == id);
         if (aluno == null) return false;
-        repository.Remover(aluno);
+        await repository.RemoverAsync(aluno);
         return true;
     }
 }

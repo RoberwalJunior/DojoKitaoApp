@@ -1,4 +1,5 @@
-﻿using DojoKitaoApp.Libraries.Domain.Interfaces.Repositories.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using DojoKitaoApp.Libraries.Domain.Interfaces.Repositories.Model;
 using DojoKitaoApp.Libraries.Infrastructure.Data.Context;
 
 namespace DojoKitaoApp.Libraries.Infrastructure.Data.Repositories.Base;
@@ -7,9 +8,9 @@ public abstract class BaseRepository<T>(AppDbContext context) : IRepositoryModel
 {
     private readonly AppDbContext context = context;
 
-    public IEnumerable<T> ListarTodos()
+    public async Task<IEnumerable<T>> ListarTodosAsync()
     {
-        return [.. context.Set<T>()];
+        return await context.Set<T>().ToListAsync();
     }
 
     public T? RecuperarPor(Func<T, bool> condicao)
@@ -17,22 +18,22 @@ public abstract class BaseRepository<T>(AppDbContext context) : IRepositoryModel
         return context.Set<T>().FirstOrDefault(condicao);
     }
 
-    public void Adicionar(T modelo)
+    public async Task AdicionarAsync(T modelo)
     {
-        context.Set<T>().Add(modelo);
-        context.SaveChanges();
+        await context.Set<T>().AddAsync(modelo);
+        await context.SaveChangesAsync();
     }
 
-    public void Atualizar(T modelo)
+    public async Task AtualizarAsync(T modelo)
     {
         context.Set<T>().Update(modelo);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
     }
 
-    public void Remover(T modelo)
+    public async Task RemoverAsync(T modelo)
     {
         context.Set<T>().Remove(modelo);
-        context.SaveChanges();
+        await context.SaveChangesAsync();
     }
 
     public void Dispose()

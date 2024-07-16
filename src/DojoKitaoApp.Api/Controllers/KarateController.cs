@@ -13,14 +13,14 @@ public class KarateController(IAlunoServiceApi alunoService, IMatriculaServiceAp
     private readonly IMatriculaServiceApi matriculaService = matriculaService;
 
     [HttpGet("Alunos")]
-    public IEnumerable<ReadAlunoDto> ListarTodosOsAlunos()
+    public async Task<IEnumerable<ReadAlunoDto>> ListarTodosOsAlunos()
     {
-        return alunoService.ListarTodosOsAlunosDaArteMarcial(1);
+        return await alunoService.ListarTodosOsAlunosDaArteMarcial(1);
     }
 
     [HttpGet("Matriculas")]
-    public IEnumerable<ReadMatriculaDto> ListarMatriculasDosAlunos()
+    public async Task<IEnumerable<ReadMatriculaDto>> ListarMatriculasDosAlunos()
     {
-        return matriculaService.ListarAsMatriculasDosAlunos(1);
+        return await matriculaService.ListarAsMatriculasDosAlunos(1);
     }
 }

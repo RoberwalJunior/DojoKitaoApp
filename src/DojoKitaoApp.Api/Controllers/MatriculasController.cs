@@ -12,21 +12,21 @@ public class MatriculasController(IMatriculaServiceApi matriculaService)
     private readonly IMatriculaServiceApi service = matriculaService;
 
     [HttpGet]
-    public IEnumerable<ReadMatriculaDto> ListarMatriculasDosAlunos()
+    public async Task<IEnumerable<ReadMatriculaDto>> ListarMatriculasDosAlunos()
     {
-        return service.ListarAsMatriculasDosAlunos();
+        return await service.ListarAsMatriculasDosAlunos();
     }
 
     [HttpPost]
-    public IActionResult NovaMatricula([FromBody] CreateMatriculaDto matriculaDto)
+    public async Task<IActionResult> NovaMatricula([FromBody] CreateMatriculaDto matriculaDto)
     {
-        service.CriarNovaMatricula(matriculaDto);
+        await service.CriarNovaMatricula(matriculaDto);
         return Ok($"Matricula criado com exito!");
     }
 
     [HttpPut("{id}")]
-    public IActionResult AtualizarMatricula(int id, [FromBody] UpdateMatriculaDto matriculaDto)
+    public async Task<IActionResult> AtualizarMatricula(int id, [FromBody] UpdateMatriculaDto matriculaDto)
     {
-        return service.AtualizarMatricula(id, matriculaDto) ? NoContent() : NotFound();
+        return await service.AtualizarMatricula(id, matriculaDto) ? NoContent() : NotFound();
     }
 }

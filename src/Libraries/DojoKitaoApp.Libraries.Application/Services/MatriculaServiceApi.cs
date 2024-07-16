@@ -22,31 +22,31 @@ public class MatriculaServiceApi : IMatriculaServiceApi
         mapper = configuration.CreateMapper();
     }
 
-    public IEnumerable<ReadMatriculaDto> ListarAsMatriculasDosAlunos()
+    public async Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos()
     {
-        var matriculas = repository.ListarTodos();
+        var matriculas = await repository.ListarTodosAsync();
         return mapper.Map<List<ReadMatriculaDto>>(matriculas);
     }
 
-    public IEnumerable<ReadMatriculaDto> ListarAsMatriculasDosAlunos(int idArteMarcial)
+    public async Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos(int idArteMarcial)
     {
-        var matriculas = repository.ListarTodos();
+        var matriculas = await repository.ListarTodosAsync();
         var matriculasSelecionadas = matriculas.Where(matricula => (int)matricula.ArteMarcial == idArteMarcial);
         return mapper.Map<List<ReadMatriculaDto>>(matriculasSelecionadas);
     }
 
-    public void CriarNovaMatricula(CreateMatriculaDto matriculaDto)
+    public async Task CriarNovaMatricula(CreateMatriculaDto matriculaDto)
     {
         var matricula = mapper.Map<Matricula>(matriculaDto);
-        repository.Adicionar(matricula);
+        await repository.AdicionarAsync(matricula);
     }
 
-    public bool AtualizarMatricula(int id, UpdateMatriculaDto matriculaDto)
+    public async Task<bool> AtualizarMatricula(int id, UpdateMatriculaDto matriculaDto)
     {
         var matricula = repository.RecuperarPor(x => x.Id == id);
         if (matricula == null) return false;
         mapper.Map(matriculaDto, matricula);
-        repository.Atualizar(matricula);
+        await repository.AtualizarAsync(matricula);
         return true;
     }
 }

@@ -11,9 +11,9 @@ public class AlunosController(IAlunoServiceApi service) : ControllerBase
     private readonly IAlunoServiceApi service = service;
 
     [HttpGet]
-    public IEnumerable<ReadAlunoDto> ListarAlunos()
+    public async Task<IEnumerable<ReadAlunoDto>> ListarAlunos()
     {
-        return service.ListarTodosOsAlunos();
+        return await service.ListarTodosOsAlunos();
     }
 
     [HttpGet("{id}")]
@@ -31,21 +31,21 @@ public class AlunosController(IAlunoServiceApi service) : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult CriarNovoAluno([FromBody] CreateAlunoDto alunoDto)
+    public async Task<IActionResult> CriarNovoAluno([FromBody] CreateAlunoDto alunoDto)
     {
-        service.CriarNovoAluno(alunoDto);
+        await service.CriarNovoAluno(alunoDto);
         return Ok($"Aluno {alunoDto.Nome} criado com exito!");
     }
 
     [HttpPut("{id}")]
-    public IActionResult AtualizarAluno(int id, [FromBody] UpdateAlunoDto alunoDto)
+    public async Task<IActionResult> AtualizarAluno(int id, [FromBody] UpdateAlunoDto alunoDto)
     {
-        return service.AtualizarAluno(id, alunoDto) ? NoContent() : NotFound();
+        return await service.AtualizarAluno(id, alunoDto) ? NoContent() : NotFound();
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeletarAluno(int id)
+    public async Task<IActionResult> DeletarAluno(int id)
     {
-        return service.RemoverAluno(id) ? NoContent() : NotFound();
+        return await service.RemoverAluno(id) ? NoContent() : NotFound();
     }
 }

@@ -2,9 +2,9 @@
 
 public interface IRepositoryModel<T> : IDisposable where T : class
 {
-    public IEnumerable<T> ListarTodos();
+    public Task<IEnumerable<T>> ListarTodosAsync();
     public T? RecuperarPor(Func<T, bool> condicao);
-    public void Adicionar(T modelo);
-    public void Atualizar(T modelo);
-    public void Remover(T modelo);
+    public Task AdicionarAsync(T modelo);
+    public Task AtualizarAsync(T modelo);
+    public Task RemoverAsync(T modelo);
 }
