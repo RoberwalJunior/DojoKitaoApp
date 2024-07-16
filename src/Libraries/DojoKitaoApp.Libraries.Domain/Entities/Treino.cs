@@ -1,18 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using DojoKitaoApp.Libraries.Domain.Entities.Enums;
 
 namespace DojoKitaoApp.Libraries.Domain.Entities;
 
-public class Aluno
+public class Treino
 {
     public int Id { get; set; }
 
-    [Required]
-    [MaxLength(100)]
-    public string? Nome { get; set; }
+    public string? Descricao { get; set; }
 
     [Required]
-    public int MatriculaId { get; set; }
-    public virtual Matricula? Matricula { get; set; }
+    public ArteMarcial ArteMarcial { get; set; }
 
     public virtual ICollection<Aula>? Aulas { get; set; }
 }
