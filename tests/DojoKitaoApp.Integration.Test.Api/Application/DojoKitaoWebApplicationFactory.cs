@@ -49,4 +49,43 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
         }
         return alunoExistente;
     }
+
+    public Treino RecuperaTreinoExistente()
+    {
+        var treinoExistente = context.Treinos.FirstOrDefault();
+        if (treinoExistente == null)
+        {
+            treinoExistente = new Treino()
+            {
+                Descricao = "Descrição teste",
+                ArteMarcial = 0
+            };
+
+            context.Add(treinoExistente);
+            context.SaveChanges();
+        }
+        return treinoExistente;
+    }
+
+    public Aula RecuperaAulaExistente()
+    {
+        var aulaExistente = context.Aulas.FirstOrDefault();
+        if (aulaExistente == null)
+        {
+            var alunoExistente = RecuperarAlunoExistente();
+            var treinoExistente = RecuperaTreinoExistente();
+            aulaExistente = new Aula()
+            {
+                Aluno = alunoExistente,
+                AlunoId = alunoExistente.Id,
+                Treino = treinoExistente,
+                TreinoId = treinoExistente.Id,
+                Data = DateTime.Now
+            };
+
+            context.Add(aulaExistente);
+            context.SaveChanges();
+        }
+        return aulaExistente;
+    }
 }

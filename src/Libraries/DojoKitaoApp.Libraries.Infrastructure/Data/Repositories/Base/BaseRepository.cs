@@ -8,9 +8,14 @@ public abstract class BaseRepository<T>(AppDbContext context) : IRepositoryModel
 {
     private readonly AppDbContext context = context;
 
-    public async Task<IEnumerable<T>> ListarTodosAsync()
+    public async Task<IEnumerable<T>> ListarTodosAsync(Func<T, bool> condicao = null!)
     {
-        return await context.Set<T>().ToListAsync();
+        var list = await context.Set<T>().ToListAsync();
+        if (condicao != null)
+        {
+            list = list.Where(condicao).ToList();
+        }
+        return list;
     }
 
     public T? RecuperarPor(Func<T, bool> condicao)

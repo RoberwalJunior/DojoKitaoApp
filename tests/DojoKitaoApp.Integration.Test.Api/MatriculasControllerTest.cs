@@ -10,14 +10,16 @@ public class MatriculasControllerTest(DojoKitaoWebApplicationFactory app)
 {
     private readonly DojoKitaoWebApplicationFactory app = app;
 
-    [Fact]
-    public async Task POST_Cadastra_Matricula()
+    [Theory]
+    [InlineData(1, HttpStatusCode.OK)]
+    [InlineData(10, HttpStatusCode.BadRequest)]
+    public async Task POST_Cadastra_Matricula(int idArteMarcial, HttpStatusCode statusCode)
     {
         //Arrange
         var matriculaDto = new CreateMatriculaDto()
         {
             Endereco = "Rua teste",
-            ArteMarcial = 0
+            ArteMarcial = idArteMarcial
         };
         using var client = app.CreateClient();
 
@@ -26,7 +28,7 @@ public class MatriculasControllerTest(DojoKitaoWebApplicationFactory app)
 
         //Assert
         Assert.NotNull(result);
-        Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+        Assert.Equal(statusCode, result.StatusCode);
     }
 
     [Fact]

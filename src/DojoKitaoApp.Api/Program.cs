@@ -16,9 +16,13 @@ builder.Services.AddDbContext<AppDbContext>((options) =>
 
 builder.Services.AddTransient<IAlunoRepository, AlunoRepository>();
 builder.Services.AddTransient<IMatriculaRepository, MatriculaRepository>();
+builder.Services.AddTransient<ITreinoRepository, TreinoRepository>();
+builder.Services.AddTransient<IAulaRepository, AulaRepository>();
 
 builder.Services.AddTransient<IAlunoServiceApi, AlunoServiceApi>();
 builder.Services.AddTransient<IMatriculaServiceApi, MatriculaServiceApi>();
+builder.Services.AddTransient<ITreinoServiceApi, TreinoServiceApi>();
+builder.Services.AddTransient<IAulaServiceApi, AulaServiceApi>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

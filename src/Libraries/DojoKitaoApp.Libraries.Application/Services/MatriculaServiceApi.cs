@@ -30,9 +30,8 @@ public class MatriculaServiceApi : IMatriculaServiceApi
 
     public async Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos(int idArteMarcial)
     {
-        var matriculas = await repository.ListarTodosAsync();
-        var matriculasSelecionadas = matriculas.Where(matricula => (int)matricula.ArteMarcial == idArteMarcial);
-        return mapper.Map<List<ReadMatriculaDto>>(matriculasSelecionadas);
+        var matriculas = await repository.ListarTodosAsync(matricula => (int)matricula.ArteMarcial == idArteMarcial);
+        return mapper.Map<List<ReadMatriculaDto>>(matriculas);
     }
 
     public async Task CriarNovaMatricula(CreateMatriculaDto matriculaDto)

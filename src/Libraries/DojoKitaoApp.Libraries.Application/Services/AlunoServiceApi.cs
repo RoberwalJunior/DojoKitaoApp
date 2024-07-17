@@ -32,9 +32,8 @@ public class AlunoServiceApi : IAlunoServiceApi
 
     public async Task<IEnumerable<ReadAlunoDto>> ListarTodosOsAlunosDaArteMarcial(int idArteMarcial)
     {
-        var alunos = await repository.ListarTodosAsync();
-        var alunosSelecionados = alunos.Where(aluno => (int)aluno.Matricula!.ArteMarcial == idArteMarcial);
-        return mapper.Map<List<ReadAlunoDto>>(alunosSelecionados);
+        var alunos = await repository.ListarTodosAsync(aluno => (int)aluno.Matricula!.ArteMarcial == idArteMarcial);
+        return mapper.Map<List<ReadAlunoDto>>(alunos);
     }
 
     public ReadAlunoDto? RecuperarAlunoPeloId(int id)
