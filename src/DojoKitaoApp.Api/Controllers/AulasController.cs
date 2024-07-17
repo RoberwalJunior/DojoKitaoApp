@@ -23,13 +23,6 @@ public class AulasController(IAulaServiceApi serviceApi) : ControllerBase
         return aulaDto != null ? Ok(aulaDto) : NotFound();
     }
 
-    [HttpGet("{data}")]
-    public IActionResult RecuperarAula(string data)
-    {
-        var aulaDto = service.RecuperarAulaPelaData(data);
-        return aulaDto != null ? Ok(aulaDto) : NotFound();
-    }
-
     [HttpPost]
     public async Task<IActionResult> CriarNovaAula([FromBody] CreateAulaDto aulaDto)
     {

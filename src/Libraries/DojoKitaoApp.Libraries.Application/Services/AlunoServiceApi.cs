@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Aluno;
+using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Endereco;
 using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Matricula;
 using DojoKitaoApp.Libraries.Application.AutoMapper.Profiles;
 using DojoKitaoApp.Libraries.Application.Interfaces;
@@ -20,6 +21,7 @@ public class AlunoServiceApi : IAlunoServiceApi
         {
             cfg.AddProfile<AlunoProfile>();
             cfg.CreateMap<Matricula, ReadMatriculaDto>();
+            cfg.CreateMap<Endereco, ReadEnderecoDto>();
         });
         mapper = configuration.CreateMapper();
     }
@@ -27,12 +29,6 @@ public class AlunoServiceApi : IAlunoServiceApi
     public async Task<IEnumerable<ReadAlunoDto>> ListarTodosOsAlunos()
     {
         var alunos = await repository.ListarTodosAsync();
-        return mapper.Map<List<ReadAlunoDto>>(alunos);
-    }
-
-    public async Task<IEnumerable<ReadAlunoDto>> ListarTodosOsAlunosDaArteMarcial(int idArteMarcial)
-    {
-        var alunos = await repository.ListarTodosAsync(aluno => (int)aluno.Matricula!.ArteMarcial == idArteMarcial);
         return mapper.Map<List<ReadAlunoDto>>(alunos);
     }
 
@@ -48,11 +44,10 @@ public class AlunoServiceApi : IAlunoServiceApi
         return aluno != null ? mapper.Map<ReadAlunoDto>(aluno) : null;
     }
 
-    public ReadMatriculaDto? RecuperarMatriculaDoAluno(int id)
+    public IEnumerable<ReadMatriculaDto>? RecuperarMatriculasDoAluno(int id)
     {
         var aluno = repository.RecuperarPor(aluno => aluno.Id == id);
-        return (aluno != null && aluno.Matricula != null)
-            ? mapper.Map<ReadMatriculaDto>(aluno.Matricula) : null;
+        return (aluno != null) ? mapper.Map<List<ReadMatriculaDto>>(aluno.Matriculas) : null;
     }
 
     public async Task CriarNovoAluno(CreateAlunoDto alunoDto)

@@ -1,14 +1,19 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Treino;
 
 public class UpdateTreinoDto
 {
-    [DisplayName("Descrição")]
+    [Display(Name = "Descrição")]
     public string? Descricao { get; set; }
 
-    [Required(ErrorMessage = "Arte Marcial é obrigatório!")]
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Arte Marcial")]
     [Range(0, 1)]
     public int ArteMarcial { get; set; }
+
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Data da Aula")]
+    [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
+    public DateTime Data { get; set; }
 }

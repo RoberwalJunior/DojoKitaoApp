@@ -4,12 +4,11 @@ namespace DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Aula;
 
 public class CreateAulaDto
 {
-    [Required]
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Id do Treino")]
     public int TreinoId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Id do Aluno")]
     public int AlunoId { get; set; }
-
-    [Required]
-    public string? Data { get; set; }
 }

@@ -8,9 +8,7 @@ public class AulaProfile : Profile
 {
     public AulaProfile()
     {
-        CreateMap<CreateAulaDto, Aula>()
-            .ForMember(aula => aula.Data,
-                opt => opt.MapFrom(aulaDto => DateTime.Parse(aulaDto.Data!)));
+        CreateMap<CreateAulaDto, Aula>();
         CreateMap<Aula, ReadAulaDto>();
         CreateMap<UpdateAulaDto, Aula>();
     }

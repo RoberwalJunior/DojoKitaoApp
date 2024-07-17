@@ -15,15 +15,35 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
         context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     }
 
+    public Endereco RecuperarEnderecoExistenteSemAluno()
+    {
+        var enderecoExistente = context.Enderecos.FirstOrDefault(endereco => endereco.Aluno == null);
+        if (enderecoExistente == null)
+        {
+            enderecoExistente = new Endereco()
+            {
+                Logradouro = "Rua das Flores",
+                Numero = 120,
+                CEP = "123345",
+                Complemento = "Ap 15"
+            };
+
+            context.Add(enderecoExistente);
+            context.SaveChanges();
+        }
+        return enderecoExistente;
+    }
+
     public int RecuperarIdMatriculaExistente()
     {
-        var matriculaExistente = context.Matriculas.FirstOrDefault(matricula => matricula.Aluno == null);
+        var matriculaExistente = context.Matriculas.FirstOrDefault();
         if (matriculaExistente == null)
         {
+            var novoAluno = RetornarNovoAluno();
             matriculaExistente = new Matricula()
             {
-                Endereco = "Rua teste",
-                ArteMarcial = 0
+                ArteMarcial = 0,
+                AlunoId = novoAluno.Id
             };
 
             context.Add(matriculaExistente);
@@ -35,19 +55,23 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
     public Aluno RecuperarAlunoExistente()
     {
         var alunoExistente = context.Alunos.FirstOrDefault();
-        if (alunoExistente == null)
-        {
-            var idMatriculaExistente = RecuperarIdMatriculaExistente();
-            alunoExistente = new Aluno()
-            {
-                Nome = "Aluno Teste",
-                MatriculaId = idMatriculaExistente
-            };
+        return alunoExistente ?? RetornarNovoAluno();
+    }
 
-            context.Add(alunoExistente);
-            context.SaveChanges();
-        }
-        return alunoExistente;
+    public Aluno RetornarNovoAluno()
+    {
+        var enderecoSemAluno = RecuperarEnderecoExistenteSemAluno();
+        var aluno = new Aluno()
+        {
+            EnderecoId = enderecoSemAluno.Id,
+            Nome = "Maria",
+            Sobrenome = "Campos",
+            DataNascimento = new DateTime(1990, 2, 2)
+        };
+
+        context.Add(aluno);
+        context.SaveChanges();
+        return aluno;
     }
 
     public Treino RecuperaTreinoExistente()
@@ -72,15 +96,14 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
         var aulaExistente = context.Aulas.FirstOrDefault();
         if (aulaExistente == null)
         {
-            var alunoExistente = RecuperarAlunoExistente();
+            var alunoExistente = RetornarNovoAluno();
             var treinoExistente = RecuperaTreinoExistente();
             aulaExistente = new Aula()
             {
                 Aluno = alunoExistente,
                 AlunoId = alunoExistente.Id,
                 Treino = treinoExistente,
-                TreinoId = treinoExistente.Id,
-                Data = DateTime.Now
+                TreinoId = treinoExistente.Id
             };
 
             context.Add(aulaExistente);

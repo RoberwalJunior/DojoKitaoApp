@@ -11,7 +11,4 @@ public class Aula
     [Required]
     public int AlunoId { get; set; }
     public virtual Aluno? Aluno { get; set; }
-
-    [Required]
-    public DateTime Data { get; set; }
 }

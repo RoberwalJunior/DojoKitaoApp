@@ -3,6 +3,6 @@
 public class ReadMatriculaDto
 {
     public int Id { get; set; }
-    public string? Endereco { get; set; }
+    public string? Aluno { get; set; }
     public string? ArteMarcial { get; set; }
 }

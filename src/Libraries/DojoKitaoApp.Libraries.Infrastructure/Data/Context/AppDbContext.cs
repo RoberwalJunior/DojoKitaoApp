@@ -6,6 +6,7 @@ namespace DojoKitaoApp.Libraries.Infrastructure.Data.Context;
 public class AppDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Aluno> Alunos { get; set; }
+    public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Matricula> Matriculas { get; set; }
     public DbSet<Treino> Treinos { get; set; }
     public DbSet<Aula> Aulas { get; set; }
@@ -14,9 +15,9 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<Matricula>()
+        modelBuilder.Entity<Endereco>()
             .HasOne(a => a.Aluno)
-            .WithOne(a => a.Matricula)
+            .WithOne(a => a.Endereco)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<Aula>()

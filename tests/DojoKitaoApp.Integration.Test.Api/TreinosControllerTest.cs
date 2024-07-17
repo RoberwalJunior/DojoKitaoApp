@@ -13,7 +13,7 @@ public class TreinosControllerTest(DojoKitaoWebApplicationFactory app)
     [Theory]
     [InlineData(1, HttpStatusCode.OK)]
     [InlineData(10, HttpStatusCode.BadRequest)]
-    public async Task POST_Cadastra_Treino(int idArteMarcial, HttpStatusCode statusCode)
+    public async Task POST_Retorna_Status_Correspondente_Quando_Cadastra_Treino(int idArteMarcial, HttpStatusCode statusCode)
     {
         //Arrange
         var treinoDto = new CreateTreinoDto()
@@ -29,6 +29,19 @@ public class TreinosControllerTest(DojoKitaoWebApplicationFactory app)
         //Assert
         Assert.NotNull(result);
         Assert.Equal(statusCode, result.StatusCode);
+    }
+
+    [Fact]
+    public async Task GET_Retorna_Lista_Treinos()
+    {
+        //Arrange
+        using var client = app.CreateClient();
+
+        //Act
+        var treinosDtos = await client.GetFromJsonAsync<List<ReadTreinoDto>>($"/api/Treinos");
+
+        //Assert
+        Assert.NotNull(treinosDtos);
     }
 
     [Fact]

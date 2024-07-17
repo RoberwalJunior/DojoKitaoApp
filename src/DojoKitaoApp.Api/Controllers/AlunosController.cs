@@ -26,7 +26,7 @@ public class AlunosController(IAlunoServiceApi service) : ControllerBase
     [HttpGet("{id}/Matricula")]
     public IActionResult RecuperarMatriculaDoAluno(int id)
     {
-        var matriculaDto = service.RecuperarMatriculaDoAluno(id);
+        var matriculaDto = service.RecuperarMatriculasDoAluno(id);
         return matriculaDto != null ? Ok(matriculaDto) : NotFound();
     }
 

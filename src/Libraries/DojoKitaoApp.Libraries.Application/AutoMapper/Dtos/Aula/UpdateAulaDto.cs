@@ -4,14 +4,11 @@ namespace DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Aula;
 
 public class UpdateAulaDto
 {
-    [Required]
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Id do Treino")]
     public int TreinoId { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Id do Aluno")]
     public int AlunoId { get; set; }
-
-    [Required]
-    [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-    public DateTime Data { get; set; }
 }

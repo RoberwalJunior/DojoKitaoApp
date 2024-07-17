@@ -14,13 +14,12 @@ public class AulasControllerTest(DojoKitaoWebApplicationFactory app)
     public async Task POST_Retornar_Status_Ok_Quando_Cadastra_Aula()
     {
         //Arrange
-        var alunoExistente = app.RecuperarAlunoExistente();
+        var alunoExistente = app.RetornarNovoAluno();
         var treinoExistente = app.RecuperaTreinoExistente();
         var aulaDto = new CreateAulaDto()
         {
             AlunoId = alunoExistente.Id,
-            TreinoId = treinoExistente.Id,
-            Data = DateTime.Now.ToString("MM/dd/yyyy")
+            TreinoId = treinoExistente.Id
         };
         using var client = app.CreateClient();
 
@@ -30,6 +29,19 @@ public class AulasControllerTest(DojoKitaoWebApplicationFactory app)
         //Assert
         Assert.NotNull(result);
         Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+    }
+
+    [Fact]
+    public async Task GET_Retorna_Lista_Aulas()
+    {
+        //Arrange
+        using var client = app.CreateClient();
+
+        //Act
+        var aulasDto = await client.GetFromJsonAsync<List<ReadAulaDto>>($"/api/Aulas");
+
+        //Assert
+        Assert.NotNull(aulasDto);
     }
 
     [Fact]
@@ -46,6 +58,5 @@ public class AulasControllerTest(DojoKitaoWebApplicationFactory app)
         Assert.NotNull(alunoDto);
         Assert.Equal(aulaExistente.TreinoId, alunoDto.TreinoId);
         Assert.Equal(aulaExistente.AlunoId, alunoDto.AlunoId);
-        Assert.Equal(aulaExistente.Data, alunoDto.Data);
     }
 }

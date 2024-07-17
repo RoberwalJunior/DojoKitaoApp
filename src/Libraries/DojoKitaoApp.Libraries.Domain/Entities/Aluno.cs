@@ -11,8 +11,18 @@ public class Aluno
     public string? Nome { get; set; }
 
     [Required]
-    public int MatriculaId { get; set; }
-    public virtual Matricula? Matricula { get; set; }
+    [MaxLength(150)]
+    public string? Sobrenome { get; set; }
 
+    [Required]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
+    public DateTime? DataNascimento { get; set; }
+
+    [Required]
+    public int EnderecoId { get; set; }
+    public virtual Endereco? Endereco { get; set; }
+
+    public virtual ICollection<Matricula>? Matriculas { get; set; }
     public virtual ICollection<Aula>? Aulas { get; set; }
 }

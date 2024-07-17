@@ -12,19 +12,21 @@ public class AlunosControllerTest(DojoKitaoWebApplicationFactory app)
     private readonly DojoKitaoWebApplicationFactory app = app;
 
     [Fact]
-    public async Task POST_Retornar_Status_Ok_Quando_Cadastra_Aluno_Com_Matricula()
+    public async Task POST_Retornar_Status_Ok_Quando_Cadastra_Aluno_Com_Endereco()
     {
         //Arrange
-        var idMatriculaExistente = app.RecuperarIdMatriculaExistente();
-        var matriculaDto = new CreateAlunoDto()
+        var enderecoSemAluno = app.RecuperarEnderecoExistenteSemAluno();
+        var alunoDto = new CreateAlunoDto()
         {
-            Nome = "Aluno teste",
-            MatriculaId = idMatriculaExistente
+            EnderecoId = enderecoSemAluno.Id,
+            Nome = "Jorge",
+            Sobrenome = "Roberto",
+            DataNascimento = new DateTime(2000, 6, 20)
         };
         using var client = app.CreateClient();
 
         //Act
-        var result = await client.PostAsJsonAsync("/api/Alunos", matriculaDto);
+        var result = await client.PostAsJsonAsync("/api/Alunos", alunoDto);
 
         //Assert
         Assert.NotNull(result);
@@ -32,21 +34,36 @@ public class AlunosControllerTest(DojoKitaoWebApplicationFactory app)
     }
 
     [Fact]
-    public async Task POST_Retorna_InternalServerError_Quando_Cadastra_Aluno_Sem_Matricula()
+    public async Task POST_Retorna_InternalServerError_Quando_Cadastra_Aluno_Sem_Endereco()
     {
         //Arrange
-        var matriculaDto = new CreateAlunoDto()
+        var alunoDto = new CreateAlunoDto()
         {
-            Nome = "Aluno teste"
+            Nome = "Jorge",
+            Sobrenome = "Roberto",
+            DataNascimento = new DateTime(2000, 6, 20)
         };
         using var client = app.CreateClient();
 
         //Act
-        var result = await client.PostAsJsonAsync("/api/Alunos", matriculaDto);
+        var result = await client.PostAsJsonAsync("/api/Alunos", alunoDto);
 
         //Assert
         Assert.NotNull(result);
         Assert.Equal(HttpStatusCode.InternalServerError, result.StatusCode);
+    }
+
+    [Fact]
+    public async Task GET_Retorna_Lista_Alunos()
+    {
+        //Arrange
+        using var client = app.CreateClient();
+
+        //Act
+        var alunosDtos = await client.GetFromJsonAsync<List<ReadAlunoDto>>($"/api/Alunos");
+
+        //Assert
+        Assert.NotNull(alunosDtos);
     }
 
     [Fact]
@@ -80,21 +97,38 @@ public class AlunosControllerTest(DojoKitaoWebApplicationFactory app)
     }
 
     [Fact]
-    public async Task GET_Retorna_Matricula_Pelo_Id_Do_Aluno()
+    public async Task GET_Retorna_Matriculas_Pelo_Id_Do_Aluno()
     {
         //Arrange
         var alunoExistente = app.RecuperarAlunoExistente();
-        var matricula = alunoExistente.Matricula!;
         using var client = app.CreateClient();
 
         //Act
-        var matriculaDto = await client.GetFromJsonAsync<ReadMatriculaDto>($"/api/Alunos/{alunoExistente.Id}/Matricula");
+        var matriculasDto = await client.GetFromJsonAsync<List<ReadMatriculaDto>>($"/api/Alunos/{alunoExistente.Id}/Matricula");
 
         //Assert
-        Assert.NotNull(matriculaDto);
-        Assert.Equal(matricula.Id, matriculaDto.Id);
-        Assert.Equal(matricula.Endereco, matriculaDto.Endereco);
-        Assert.Equal(matricula.ArteMarcial.ToString(), matriculaDto.ArteMarcial);
+        Assert.NotNull(matriculasDto);
+    }
+
+    [Fact]
+    public async Task PUT_RetornaStatus_NoContent_Quando_Atualiza_Aluno_Com_Exito()
+    {
+        //Arrange
+        var alunoExistente = app.RecuperarAlunoExistente();
+        var alunoDto = new UpdateAlunoDto()
+        {
+            Nome = "Ricardo",
+            Sobrenome = "Fixer",
+            DataNascimento = new DateTime(1990, 3, 3)
+        };
+        using var client = app.CreateClient();
+
+        //Act
+        var result = await client.PutAsJsonAsync($"/api/Alunos/{alunoExistente.Id}", alunoDto);
+
+        //Assert
+        Assert.NotNull(result);
+        Assert.Equal(HttpStatusCode.NoContent, result.StatusCode);
     }
 
     [Fact]

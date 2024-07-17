@@ -40,14 +40,6 @@ public class AulaServiceApi : IAulaServiceApi
         return aula != null ? mapper.Map<ReadAulaDto>(aula) : null;
     }
 
-    public ReadAulaDto? RecuperarAulaPelaData(string data)
-    {
-        var teste = DateTime.TryParse(data, out DateTime result);
-        if (!teste) return null;
-        var aula = repository.RecuperarPor(aula => aula.Data.Equals(result));
-        return aula != null ? mapper.Map<ReadAulaDto>(aula) : null;
-    }
-
     public async Task CriarNovaAula(CreateAulaDto aulaDto)
     {
         var aula = mapper.Map<Aula>(aulaDto);

@@ -7,11 +7,10 @@ public class Matricula
 {
     public int Id { get; set; }
 
+    [Required]
+    public int AlunoId { get; set; }
     public virtual Aluno? Aluno { get; set; }
 
     [Required]
     public ArteMarcial ArteMarcial { get; set; }
-
-    [MaxLength(150)]
-    public string? Endereco { get; set; }
 }

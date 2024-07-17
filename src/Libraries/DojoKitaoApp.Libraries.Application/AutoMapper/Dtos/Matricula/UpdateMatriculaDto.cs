@@ -4,6 +4,12 @@ namespace DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Matricula;
 
 public class UpdateMatriculaDto
 {
-    [StringLength(150, ErrorMessage = "Não pode ter mais do que 150 caracteres.")]
-    public string? Endereco { get; set; }
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Id do Aluno")]
+    public int AlunoId { get; set; }
+
+    [Required(ErrorMessage = "{0} é obrigatório!")]
+    [Display(Name = "Arte Marcial")]
+    [Range(0, 1)]
+    public int ArteMarcial { get; set; }
 }
