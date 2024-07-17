@@ -15,23 +15,33 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
         context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     }
 
+    public Endereco RecuperarEnderecoExistente()
+    {
+        var enderecoExistente = context.Enderecos.FirstOrDefault();
+        enderecoExistente ??= RetornarNovoEndereco();
+        return enderecoExistente;
+    }
+
     public Endereco RecuperarEnderecoExistenteSemAluno()
     {
         var enderecoExistente = context.Enderecos.FirstOrDefault(endereco => endereco.Aluno == null);
-        if (enderecoExistente == null)
-        {
-            enderecoExistente = new Endereco()
-            {
-                Logradouro = "Rua das Flores",
-                Numero = 120,
-                CEP = "123345",
-                Complemento = "Ap 15"
-            };
-
-            context.Add(enderecoExistente);
-            context.SaveChanges();
-        }
+        enderecoExistente ??= RetornarNovoEndereco();
         return enderecoExistente;
+    }
+
+    private Endereco RetornarNovoEndereco()
+    {
+        var novoEndereco = new Endereco()
+        {
+            Logradouro = "Rua das Flores",
+            Numero = 120,
+            CEP = "123345",
+            Complemento = "Ap 15"
+        };
+
+        context.Add(novoEndereco);
+        context.SaveChanges();
+        return novoEndereco;
     }
 
     public int RecuperarIdMatriculaExistente()
