@@ -104,7 +104,7 @@ public class AlunosControllerTest(DojoKitaoWebApplicationFactory app)
         using var client = app.CreateClient();
 
         //Act
-        var matriculasDto = await client.GetFromJsonAsync<List<ReadMatriculaDto>>($"/api/Alunos/{alunoExistente.Id}/Matricula");
+        var matriculasDto = await client.GetFromJsonAsync<List<ReadMatriculaDto>>($"/api/Alunos/{alunoExistente.Id}/Matriculas");
 
         //Assert
         Assert.NotNull(matriculasDto);

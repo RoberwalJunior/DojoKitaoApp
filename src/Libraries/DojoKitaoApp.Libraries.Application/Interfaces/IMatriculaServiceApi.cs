@@ -6,6 +6,8 @@ public interface IMatriculaServiceApi
 {
     public Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos();
     public Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos(int idArteMarcial);
+    public ReadMatriculaDto? RecuperarMatriculaPeloId(int id);
     public Task CriarNovaMatricula(CreateMatriculaDto matriculaDto);
     public Task<bool> AtualizarMatricula(int id, UpdateMatriculaDto matriculaDto);
+    public Task<bool> RemoverMatricula(int id);
 }

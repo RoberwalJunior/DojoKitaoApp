@@ -44,7 +44,7 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
         return novoEndereco;
     }
 
-    public int RecuperarIdMatriculaExistente()
+    public Matricula RecuperarMatriculaExistente()
     {
         var matriculaExistente = context.Matriculas.FirstOrDefault();
         if (matriculaExistente == null)
@@ -59,7 +59,7 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
             context.Add(matriculaExistente);
             context.SaveChanges();
         }
-        return matriculaExistente.Id;
+        return matriculaExistente;
     }
 
     public Aluno RecuperarAlunoExistente()

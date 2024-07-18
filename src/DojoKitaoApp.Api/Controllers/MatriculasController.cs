@@ -6,7 +6,7 @@ namespace DojoKitaoApp.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class MatriculasController(IMatriculaServiceApi matriculaService) 
+public class MatriculasController(IMatriculaServiceApi matriculaService)
     : ControllerBase
 {
     private readonly IMatriculaServiceApi service = matriculaService;
@@ -15,6 +15,13 @@ public class MatriculasController(IMatriculaServiceApi matriculaService)
     public async Task<IEnumerable<ReadMatriculaDto>> ListarMatriculasDosAlunos()
     {
         return await service.ListarAsMatriculasDosAlunos();
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult RecuperarMatriculaPeloId(int id)
+    {
+        var matricula = service.RecuperarMatriculaPeloId(id);
+        return matricula != null ? Ok(matricula) : NotFound();
     }
 
     [HttpPost]
@@ -28,5 +35,11 @@ public class MatriculasController(IMatriculaServiceApi matriculaService)
     public async Task<IActionResult> AtualizarMatricula(int id, [FromBody] UpdateMatriculaDto matriculaDto)
     {
         return await service.AtualizarMatricula(id, matriculaDto) ? NoContent() : NotFound();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> RemoverMatricula(int id)
+    {
+        return await service.RemoverMatricula(id) ? NoContent() : NotFound();
     }
 }
