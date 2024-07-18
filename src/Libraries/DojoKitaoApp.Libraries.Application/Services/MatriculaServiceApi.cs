@@ -28,12 +28,6 @@ public class MatriculaServiceApi : IMatriculaServiceApi
         return mapper.Map<List<ReadMatriculaDto>>(matriculas);
     }
 
-    public async Task<IEnumerable<ReadMatriculaDto>> ListarAsMatriculasDosAlunos(int idArteMarcial)
-    {
-        var matriculas = await repository.ListarTodosAsync(matricula => (int)matricula.ArteMarcial == idArteMarcial);
-        return mapper.Map<List<ReadMatriculaDto>>(matriculas);
-    }
-
     public ReadMatriculaDto? RecuperarMatriculaPeloId(int id)
     {
         var matricula = repository.RecuperarPor(matricula => matricula.Id == id);

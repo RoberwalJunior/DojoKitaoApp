@@ -38,12 +38,6 @@ public class AlunoServiceApi : IAlunoServiceApi
         return aluno != null ? mapper.Map<ReadAlunoDto>(aluno) : null;
     }
 
-    public ReadAlunoDto? RecuperarAlunoPeloNome(string nome)
-    {
-        var aluno = repository.RecuperarPor(aluno => aluno.Nome!.ToUpper().Equals(nome.ToUpper()));
-        return aluno != null ? mapper.Map<ReadAlunoDto>(aluno) : null;
-    }
-
     public IEnumerable<ReadMatriculaDto>? RecuperarMatriculasDoAluno(int id)
     {
         var aluno = repository.RecuperarPor(aluno => aluno.Id == id);

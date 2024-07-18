@@ -28,12 +28,6 @@ public class AulaServiceApi : IAulaServiceApi
         return mapper.Map<List<ReadAulaDto>>(aulas);
     }
 
-    public async Task<IEnumerable<ReadAulaDto>> ListarTodasAsAulas(int idArteMarcial)
-    {
-        var aulas = await repository.ListarTodosAsync(aula => (int)aula.Treino!.ArteMarcial == idArteMarcial);
-        return mapper.Map<List<ReadAulaDto>>(aulas);
-    }
-
     public ReadAulaDto? RecuperarAulaPeloTreinoIdAlunoId(int treinoId, int alunoId)
     {
         var aula = repository.RecuperarPor(aula => aula.TreinoId == treinoId && aula.AlunoId == alunoId);

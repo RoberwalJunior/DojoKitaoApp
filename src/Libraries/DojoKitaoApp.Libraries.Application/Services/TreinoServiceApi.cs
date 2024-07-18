@@ -28,12 +28,6 @@ public class TreinoServiceApi : ITreinoServiceApi
         return mapper.Map<List<ReadTreinoDto>>(treinos);
     }
 
-    public async Task<IEnumerable<ReadTreinoDto>> ListarTodosOsTreinos(int idArteMarcial)
-    {
-        var treinos = await repository.ListarTodosAsync(treino => (int)treino.ArteMarcial == idArteMarcial);
-        return mapper.Map<List<ReadTreinoDto>>(treinos);
-    }
-
     public ReadTreinoDto? RecuperarTreinoPeloId(int id)
     {
         var treino = repository.RecuperarPor(treino => treino.Id == id);

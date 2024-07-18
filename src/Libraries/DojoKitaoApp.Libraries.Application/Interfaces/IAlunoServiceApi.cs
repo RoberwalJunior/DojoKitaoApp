@@ -7,7 +7,6 @@ public interface IAlunoServiceApi
 {
     public Task<IEnumerable<ReadAlunoDto>> ListarTodosOsAlunos();
     public ReadAlunoDto? RecuperarAlunoPeloId(int id);
-    public ReadAlunoDto? RecuperarAlunoPeloNome(string nome);
     public IEnumerable<ReadMatriculaDto>? RecuperarMatriculasDoAluno(int id);
     public Task CriarNovoAluno(CreateAlunoDto alunoDto);
     public Task<bool> AtualizarAluno(int id, UpdateAlunoDto alunoDto);
