@@ -19,7 +19,8 @@ public class AulasControllerTest(DojoKitaoWebApplicationFactory app)
         var aulaDto = new CreateAulaDto()
         {
             AlunoId = alunoExistente.Id,
-            TreinoId = treinoExistente.Id
+            TreinoId = treinoExistente.Id,
+            Data = DateTime.Now
         };
         using var client = app.CreateClient();
 

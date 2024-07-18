@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Aula;
 using DojoKitaoApp.Libraries.Domain.Entities;
+using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Aula;
 
 namespace DojoKitaoApp.Libraries.Application.AutoMapper.Profiles;
 
@@ -10,6 +10,5 @@ public class AulaProfile : Profile
     {
         CreateMap<CreateAulaDto, Aula>();
         CreateMap<Aula, ReadAulaDto>();
-        CreateMap<UpdateAulaDto, Aula>();
     }
 }

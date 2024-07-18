@@ -12,10 +12,5 @@ public class Treino
     [Required]
     public ArteMarcial ArteMarcial { get; set; }
 
-    [Required]
-    [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
-    public DateTime Data { get; set; }
-
     public virtual ICollection<Aula>? Aulas { get; set; }
 }

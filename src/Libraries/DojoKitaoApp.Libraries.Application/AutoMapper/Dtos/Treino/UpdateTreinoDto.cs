@@ -11,9 +11,4 @@ public class UpdateTreinoDto
     [Display(Name = "Arte Marcial")]
     [Range(0, 1)]
     public int ArteMarcial { get; set; }
-
-    [Required(ErrorMessage = "{0} é obrigatório!")]
-    [Display(Name = "Data da Aula")]
-    [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
-    public DateTime Data { get; set; }
 }

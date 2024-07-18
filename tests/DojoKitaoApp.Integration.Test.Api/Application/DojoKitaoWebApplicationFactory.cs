@@ -113,7 +113,8 @@ public class DojoKitaoWebApplicationFactory : WebApplicationFactory<Program>
                 Aluno = alunoExistente,
                 AlunoId = alunoExistente.Id,
                 Treino = treinoExistente,
-                TreinoId = treinoExistente.Id
+                TreinoId = treinoExistente.Id,
+                Data = DateTime.Now
             };
 
             context.Add(aulaExistente);

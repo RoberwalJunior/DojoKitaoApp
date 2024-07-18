@@ -11,10 +11,4 @@ public class CreateTreinoDto
     [Display(Name = "Arte Marcial")]
     [Range(0, 1)]
     public int ArteMarcial { get; set; }
-
-    [Required(ErrorMessage = "{0} é obrigatório!")]
-    [DataType(DataType.Date)]
-    [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
-    [Display(Name = "Data da Aula")]
-    public DateTime Data { get; set; }
 }

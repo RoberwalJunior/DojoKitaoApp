@@ -11,4 +11,9 @@ public class Aula
     [Required]
     public int AlunoId { get; set; }
     public virtual Aluno? Aluno { get; set; }
+
+    [Required]
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "dd/mm/yyyy")]
+    public DateTime Data { get; set; }
 }
