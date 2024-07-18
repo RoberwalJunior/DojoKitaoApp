@@ -1,6 +1,11 @@
+using DojoKitaoApp.Web.Services.Api;
+using DojoKitaoApp.Web.Interfaces.ServicesApi;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IEnderecoServiceApi, EnderecoServiceApi>();
 
 var app = builder.Build();
 
