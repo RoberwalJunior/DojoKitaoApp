@@ -1,9 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using DojoKitaoApp.Libraries.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using DojoKitaoApp.Libraries.Infrastructure.Data.Modelos;
 
 namespace DojoKitaoApp.Libraries.Infrastructure.Data.Context;
 
-public class AppDbContext(DbContextOptions options) : DbContext(options)
+public class AppDbContext(DbContextOptions options) 
+    : IdentityDbContext<UsuarioComAcesso, PerfilDeAcesso, int>(options)
 {
     public DbSet<Aluno> Alunos { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }

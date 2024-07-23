@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddTransient<IEnderecoServiceApi, EnderecoServiceApi>();
+builder.Services.AddScoped<IEnderecoServiceApi, EnderecoServiceApi>();
 
 var app = builder.Build();
 
