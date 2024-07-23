@@ -4,6 +4,7 @@ using DojoKitaoApp.Libraries.Domain.Interfaces.Repositories;
 using DojoKitaoApp.Libraries.Infrastructure.Data.Repositories;
 using DojoKitaoApp.Libraries.Application.Interfaces;
 using DojoKitaoApp.Libraries.Application.Services;
+using DojoKitaoApp.Libraries.Infrastructure.Data.Modelos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,10 @@ builder.Services.AddDbContext<AppDbContext>((options) =>
         .UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
         .UseLazyLoadingProxies();
 });
+
+builder.Services
+    .AddIdentityApiEndpoints<UsuarioComAcesso>()
+    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddTransient<IAlunoRepository, AlunoRepository>();
 builder.Services.AddTransient<IEnderecoRepository, EnderecoRepository>();
@@ -31,6 +36,7 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAuthorization();
 
 builder.Services.AddCors(
     options => options.AddPolicy(
@@ -49,6 +55,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.MapGroup("auth").MapIdentityApi<UsuarioComAcesso>().WithTags("Autorização");
 
 app.UseCors("wasm");
 
