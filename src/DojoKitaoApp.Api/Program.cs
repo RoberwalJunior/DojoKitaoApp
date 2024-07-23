@@ -56,7 +56,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.MapGroup("auth").MapIdentityApi<UsuarioComAcesso>().WithTags("Autorização");
+app.MapGroup("api/auth").MapIdentityApi<UsuarioComAcesso>().WithTags("Autorização");
 
 app.UseCors("wasm");
 
