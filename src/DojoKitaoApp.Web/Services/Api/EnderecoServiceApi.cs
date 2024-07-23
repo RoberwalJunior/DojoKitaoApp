@@ -4,7 +4,7 @@ using DojoKitaoApp.Web.Interfaces.ServicesApi;
 
 namespace DojoKitaoApp.Web.Services.Api;
 
-public class EnderecoServiceApi(IConfiguration configuration) 
-    : BaseServiceApi<EnderecoViewModel>(configuration, "Enderecos/"), IEnderecoServiceApi
+public class EnderecoServiceApi(IHttpClientFactory factory) 
+    : BaseServiceApi<EnderecoViewModel>(factory, "Enderecos/"), IEnderecoServiceApi
 {
 }

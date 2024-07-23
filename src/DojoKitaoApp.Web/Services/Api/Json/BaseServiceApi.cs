@@ -4,19 +4,11 @@ using DojoKitaoApp.Web.Interfaces.ServicesApi.Model;
 
 namespace DojoKitaoApp.Web.Services.Api.Json;
 
-public abstract class BaseServiceApi<T> : IModelServiceApi<T> where T : class
+public abstract class BaseServiceApi<T>(IHttpClientFactory factory, string nomeEndPoint) 
+    : IModelServiceApi<T> where T : class
 {
-    protected readonly string ENDPOINT;
-    protected readonly HttpClient httpClient;
-
-    public BaseServiceApi(IConfiguration configuration, string nomeEndPoint)
-    {
-        ENDPOINT = configuration["AppConfig:EndPoints:DojoKitaoApi"] + nomeEndPoint;
-        httpClient = new HttpClient
-        {
-            BaseAddress = new Uri(ENDPOINT)
-        };
-    }
+    protected readonly string ENDPOINT = nomeEndPoint;
+    protected readonly HttpClient httpClient = factory.CreateClient("API");
 
     public async Task<ICollection<T>?> ListarAsync()
     {
