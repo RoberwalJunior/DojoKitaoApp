@@ -47,4 +47,23 @@ public class AuthApi(IHttpClientFactory factory) : AuthenticationStateProvider, 
 
         return result.IsSuccessStatusCode;
     }
+
+    public async Task LogoutAsync()
+    {
+        await httpClient.PostAsync("auth/logout", null);
+        NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+    }
+
+    public async Task<string> GetIdentityName()
+    {
+        var state = await GetAuthenticationStateAsync();
+        return state.User.Identity?.Name!;
+    }
+
+    public async Task<bool> VerificaAutenticado()
+    {
+        var state = await GetAuthenticationStateAsync();
+        var identity = state.User.Identity;
+        return identity != null && identity.IsAuthenticated;
+    }
 }

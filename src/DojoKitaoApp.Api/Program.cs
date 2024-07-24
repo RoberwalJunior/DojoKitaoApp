@@ -5,6 +5,8 @@ using DojoKitaoApp.Libraries.Infrastructure.Data.Repositories;
 using DojoKitaoApp.Libraries.Application.Interfaces;
 using DojoKitaoApp.Libraries.Application.Services;
 using DojoKitaoApp.Libraries.Infrastructure.Data.Modelos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -57,6 +59,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGroup("api/auth").MapIdentityApi<UsuarioComAcesso>().WithTags("Autorização");
+
+app.MapPost("api/auth/logout", async ([FromServices] SignInManager<UsuarioComAcesso> signInManager) =>
+{
+    await signInManager.SignOutAsync();
+    return Results.Ok();
+}).RequireAuthorization().WithTags("Autorização");
 
 app.UseCors("wasm");
 

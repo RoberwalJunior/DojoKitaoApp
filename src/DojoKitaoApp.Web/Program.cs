@@ -11,8 +11,6 @@ builder.Services.AddAuthorizationCore();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthApi>();
 builder.Services.AddScoped<IAuthApi, AuthApi>(sp => (AuthApi)
     sp.GetRequiredService<AuthenticationStateProvider>());
-builder.Services.AddScoped<AuthApi>(sp => (AuthApi)
-    sp.GetRequiredService<AuthenticationStateProvider>());
 
 builder.Services.AddScoped<CookieHandler>();
 builder.Services.AddScoped<IEnderecoServiceApi, EnderecoServiceApi>();
@@ -40,6 +38,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
