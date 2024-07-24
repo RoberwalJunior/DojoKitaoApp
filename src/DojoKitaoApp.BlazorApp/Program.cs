@@ -14,5 +14,6 @@ builder.Services.AddHttpClient("API", client =>
 });
 
 builder.Services.AddScoped<EnderecoAPI>();
+builder.Services.AddScoped<AlunoAPI>();
 
 await builder.Build().RunAsync();

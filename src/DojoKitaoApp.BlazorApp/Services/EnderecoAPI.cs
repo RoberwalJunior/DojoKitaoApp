@@ -7,7 +7,7 @@ public class EnderecoAPI(IHttpClientFactory factory)
 {
     private readonly HttpClient _httpClient = factory.CreateClient("API");
 
-    public async Task<ICollection<ReadEnderecoDto>?> ListarEnderecos()
+    public async Task<ICollection<ReadEnderecoDto>?> ListarEnderecosAsync()
     {
         ICollection<ReadEnderecoDto>? listaEnderecos = null;
         HttpResponseMessage response = await _httpClient.GetAsync("Enderecos");

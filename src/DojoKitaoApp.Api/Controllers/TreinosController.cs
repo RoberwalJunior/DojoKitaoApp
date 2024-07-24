@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
 using DojoKitaoApp.Libraries.Application.Interfaces;
 using DojoKitaoApp.Libraries.Application.AutoMapper.Dtos.Treino;
 
 namespace DojoKitaoApp.Api.Controllers;
 
-[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class TreinosController(ITreinoServiceApi serviceApi) : ControllerBase
