@@ -19,7 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C93E19C2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DojoKitaoApp.Integration.Test.Api", "tests\DojoKitaoApp.Integration.Test.Api\DojoKitaoApp.Integration.Test.Api.csproj", "{AA980823-88CD-44C0-8053-20B990446805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.Web", "src\DojoKitaoApp.Web\DojoKitaoApp.Web.csproj", "{C2E1AA68-24FE-42D7-84E4-DDD893062487}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DojoKitaoApp.Web", "src\DojoKitaoApp.Web\DojoKitaoApp.Web.csproj", "{C2E1AA68-24FE-42D7-84E4-DDD893062487}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DojoKitaoApp.BlazorApp", "src\DojoKitaoApp.BlazorApp\DojoKitaoApp.BlazorApp.csproj", "{FD44F228-7767-4FFF-AB1A-DEDCE9D2EB8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{C2E1AA68-24FE-42D7-84E4-DDD893062487}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E1AA68-24FE-42D7-84E4-DDD893062487}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2E1AA68-24FE-42D7-84E4-DDD893062487}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD44F228-7767-4FFF-AB1A-DEDCE9D2EB8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD44F228-7767-4FFF-AB1A-DEDCE9D2EB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD44F228-7767-4FFF-AB1A-DEDCE9D2EB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD44F228-7767-4FFF-AB1A-DEDCE9D2EB8D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{2CEFE7CE-54D9-4C99-8E1A-B6BB407DFBD8} = {AF08A6B2-5161-4322-BF81-B8C4C424B126}
 		{AA980823-88CD-44C0-8053-20B990446805} = {C93E19C2-AB7A-481B-9991-89283B238A54}
 		{C2E1AA68-24FE-42D7-84E4-DDD893062487} = {AF08A6B2-5161-4322-BF81-B8C4C424B126}
+		{FD44F228-7767-4FFF-AB1A-DEDCE9D2EB8D} = {AF08A6B2-5161-4322-BF81-B8C4C424B126}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FDE7CD8A-80A9-42D6-8409-6A3898C5585B}
