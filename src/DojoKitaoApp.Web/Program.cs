@@ -1,14 +1,21 @@
+using DojoKitaoApp.Web.Services;
 using DojoKitaoApp.Web.Services.Api;
 using DojoKitaoApp.Web.Interfaces.ServicesApi;
-using DojoKitaoApp.Web.Services;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<AuthenticationStateProvider, AuthApi>();
+builder.Services.AddScoped<IAuthApi, AuthApi>(sp => (AuthApi)
+    sp.GetRequiredService<AuthenticationStateProvider>());
+builder.Services.AddScoped<AuthApi>(sp => (AuthApi)
+    sp.GetRequiredService<AuthenticationStateProvider>());
+
 builder.Services.AddScoped<CookieHandler>();
 builder.Services.AddScoped<IEnderecoServiceApi, EnderecoServiceApi>();
-builder.Services.AddScoped<IAuthApi, AuthApi>();
 
 builder.Services.AddHttpClient("API", client =>
 {
