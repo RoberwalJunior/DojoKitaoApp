@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AlunoViewModel>
+
+@{
+    ViewData["Title"] = "Alunos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>
+    <a asp-action="Cadastrar">Cadastrar novo aluno</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome Completo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                Endereço
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco!.Complemento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Endereco!.CEP)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome) @Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataNascimento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco!.Logradouro), N° @Html.DisplayFor(modelItem => item.Endereco!.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco!.Complemento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Endereco!.CEP)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

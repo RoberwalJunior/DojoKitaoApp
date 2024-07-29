@@ -14,6 +14,7 @@ builder.Services.AddScoped<IAuthApi, AuthApi>(sp => (AuthApi)
 
 builder.Services.AddScoped<CookieHandler>();
 builder.Services.AddScoped<IEnderecoServiceApi, EnderecoServiceApi>();
+builder.Services.AddScoped<IAlunoServiceApi, AlunoServiceApi>();
 
 builder.Services.AddHttpClient("API", client =>
 {
