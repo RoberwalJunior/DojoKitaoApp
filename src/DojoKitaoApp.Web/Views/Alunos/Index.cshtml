@@ -18,15 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.DataNascimento)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco!.NomeEndereco)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco!.Complemento)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Endereco!.CEP)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,18 +32,7 @@
                     @Html.DisplayFor(modelItem => item.DataNascimento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Endereco!.NomeEndereco)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Endereco!.Complemento)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Endereco!.CEP)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
-                    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.Id }) |
-                    @Html.ActionLink("Excluir", "Excluir", new { id = item.Id })
+                    @Html.ActionLink("Exibir Detalhes do aluno", "Detalhes", new { Id = item.Id })
                 </td>
             </tr>
         }

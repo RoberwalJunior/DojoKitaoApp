@@ -62,4 +62,36 @@ public class AlunosController(IAlunoServiceApi alunoService, IEnderecoServiceApi
 
         return RedirectToAction(nameof(Index));
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Editar(int id)
+    {
+        var aluno = await alunoService.RecuperarPeloIdAsync(id);
+        return aluno != null ? View(aluno) : NotFound();
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Editar(AlunoViewModel aluno)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(aluno);
+        }
+
+        if (!await alunoService.AlterarAsync(aluno.Id, aluno))
+        {
+            ModelState.AddModelError("Editar aluno", "Erro ao processar a solicitação");
+            return View(aluno);
+        }
+
+        return RedirectToAction(nameof(Detalhes), new { id = aluno.Id });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> Detalhes(int id)
+    {
+        var aluno = await alunoService.RecuperarPeloIdAsync(id);
+        return aluno != null ? View(aluno) : NotFound();
+    }
 }

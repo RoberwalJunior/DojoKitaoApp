@@ -6,6 +6,8 @@ public class EnderecoViewModel
 {
     public int Id { get; set; }
 
+    public int AlunoId { get; set; }
+
     [StringLength(50, ErrorMessage = "Não pode ter mais do que 50 caracteres.")]
     public string? Logradouro { get; set; }
 
