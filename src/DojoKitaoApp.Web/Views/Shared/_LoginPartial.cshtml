@@ -1,5 +1,4 @@
-﻿@model LoginViewModel
-@inject IAuthApi service
+﻿@inject IAuthApi service
 
 @{
     var usuarioAutenticado = await service.VerificaAutenticado();
