@@ -5,4 +5,5 @@ namespace DojoKitaoApp.Web.Interfaces.ServicesApi;
 
 public interface IEnderecoServiceApi : IModelServiceApi<EnderecoViewModel>
 {
+    Task<int> CriarEnderecoAsync(EnderecoViewModel endereco);
 }

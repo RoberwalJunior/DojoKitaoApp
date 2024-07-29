@@ -60,7 +60,7 @@ public abstract class BaseServiceApi<T>(IHttpClientFactory factory, string nomeE
         return httpResponse.IsSuccessStatusCode;
     }
 
-    private static ByteArrayContent SerializarObjeto(T modelo)
+    protected static ByteArrayContent SerializarObjeto(T modelo)
     {
         string json = JsonConvert.SerializeObject(modelo);
         byte[] buffer = Encoding.UTF8.GetBytes(json);

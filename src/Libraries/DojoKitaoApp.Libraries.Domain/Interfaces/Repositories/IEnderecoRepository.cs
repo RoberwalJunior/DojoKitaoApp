@@ -5,4 +5,5 @@ namespace DojoKitaoApp.Libraries.Domain.Interfaces.Repositories;
 
 public interface IEnderecoRepository : IRepositoryModel<Endereco>
 {
+    public Task<int> AdicionarEnderecoAsync(Endereco endereco);
 }

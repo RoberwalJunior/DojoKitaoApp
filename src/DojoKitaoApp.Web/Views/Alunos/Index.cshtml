@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                Nome Completo
+                @Html.DisplayNameFor(model => model.NomeCompleto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataNascimento)
             </th>
             <th>
-                Endereço
+                @Html.DisplayNameFor(model => model.Endereco!.NomeEndereco)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Endereco!.Complemento)
@@ -35,13 +35,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nome) @Html.DisplayFor(modelItem => item.Sobrenome)
+                    @Html.DisplayFor(modelItem => item.NomeCompleto)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DataNascimento)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Endereco!.Logradouro), N° @Html.DisplayFor(modelItem => item.Endereco!.Numero)
+                    @Html.DisplayFor(modelItem => item.Endereco!.NomeEndereco)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Endereco!.Complemento)

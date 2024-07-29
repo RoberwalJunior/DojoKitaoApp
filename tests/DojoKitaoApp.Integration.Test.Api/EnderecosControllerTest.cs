@@ -32,6 +32,29 @@ public class EnderecosControllerTest(DojoKitaoWebApplicationFactory app)
     }
 
     [Fact]
+    public async Task POST_Retornar_IdEndereco_Quando_Cadastra_Endereco_Com_Exito()
+    {
+        //Arrange
+        var enderecoDto = new CreateEnderecoDto()
+        {
+            Logradouro = "Rua Mariposa",
+            Numero = 200,
+            Complemento = "n/a",
+            CEP = "5432111"
+        };
+        using var client = app.CreateClient();
+
+        //act
+        var result = await client.PostAsJsonAsync("/api/Enderecos", enderecoDto);
+        int idEndereco = int.Parse(await result.Content.ReadAsStringAsync());
+
+        //Assert
+        Assert.NotNull(result);
+        Assert.True(idEndereco > 0);
+        Assert.Equal(HttpStatusCode.OK, result.StatusCode);
+    }
+
+    [Fact]
     public async Task GET_Retorna_Lista_Enderecos()
     {
         //Arrange

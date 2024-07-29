@@ -26,8 +26,8 @@ public class EnderecosController(IEnderecoServiceApi service) : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CriarNovoEndereco([FromBody] CreateEnderecoDto enderecoDto)
     {
-        await service.CriarNovoEndereco(enderecoDto);
-        return Ok($"Endereço criado com exito!");
+        int idEndereco = await service.CriarNovoEndereco(enderecoDto);
+        return idEndereco > 0 ? Ok(idEndereco) : NotFound();
     }
 
     [HttpPut("{id}")]

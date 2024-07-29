@@ -6,7 +6,7 @@ namespace DojoKitaoApp.Libraries.Infrastructure.Data.Repositories.Base;
 
 public abstract class BaseRepository<T>(AppDbContext context) : IRepositoryModel<T> where T : class
 {
-    private readonly AppDbContext context = context;
+    protected readonly AppDbContext context = context;
 
     public async Task<IEnumerable<T>> ListarTodosAsync(Func<T, bool> condicao = null!)
     {

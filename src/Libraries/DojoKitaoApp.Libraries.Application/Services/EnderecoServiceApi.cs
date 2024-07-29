@@ -34,10 +34,10 @@ public class EnderecoServiceApi : IEnderecoServiceApi
         return endereco != null ? mapper.Map<ReadEnderecoDto>(endereco) : null;
     }
 
-    public async Task CriarNovoEndereco(CreateEnderecoDto enderecoDto)
+    public async Task<int> CriarNovoEndereco(CreateEnderecoDto enderecoDto)
     {
         var endereco = mapper.Map<Endereco>(enderecoDto);
-        await repository.AdicionarAsync(endereco);
+        return await repository.AdicionarEnderecoAsync(endereco);
     }
 
     public async Task<bool> AtualizarEndereco(int id, UpdateEnderecoDto enderecoDto)
